@@ -2,14 +2,19 @@
 
 import { Builder } from '@builder.io/react';
 import { Button } from '@/components/ui/button';
-import ButtonStandard1 from '@/components/button-standard-1';
+import { Badge } from '@/components/ui/badge';
+import { Hero1 } from '@/components/hero1';
 
 // Register components immediately when this module loads
 console.log('🔧 Registering components with Builder.io...');
 
-// --- Register Shadcn Button Component ---
+// --- Register Eminent Button Component ---
 Builder.registerComponent(Button, {
-  name: 'Shadcn Button',
+  name: 'Eminent Button',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2F75e1274b761a439580462d573f29c15d',
   inputs: [
     {
       name: 'children',
@@ -63,16 +68,164 @@ Builder.registerComponent(Button, {
       helperText: 'Add custom Tailwind CSS classes',
     },
   ],
-  image: 'https://cdn.builder.io/api/v1/image/assets%2Fpwgjf0RoYWbdnJSbpBAjXNRMe9F2%2Ffb27a7c790324294af8be1c35fe30f4d',
 });
 
-console.log('✅ Registered: Shadcn Button');
+console.log('✅ Registered: Eminent Button');
 
-// --- Register Test Button Component ---
-Builder.registerComponent(ButtonStandard1, {
-  name: 'Button Standard 1',
-  image: 'https://cdn.builder.io/api/v1/image/assets%2Fpwgjf0RoYWbdnJSbpBAjXNRMe9F2%2Ffb27a7c790324294af8be1c35fe30f4d',
+// --- Register Eminent Badge Component ---
+Builder.registerComponent(Badge, {
+  name: 'Eminent Badge',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2Fa6340c5b843e474b8ae82cb0bcab3488',
+  inputs: [
+    {
+      name: 'children',
+      type: 'text',
+      defaultValue: 'Badge',
+      helperText: 'The text to display inside the badge',
+    },
+    {
+      name: 'variant',
+      type: 'text',
+      enum: ['default', 'secondary', 'destructive', 'outline'],
+      defaultValue: 'default',
+      helperText: 'The visual style variant of the badge',
+    },
+    {
+      name: 'asChild',
+      type: 'boolean',
+      defaultValue: false,
+      helperText: 'Render as a child component (for links, etc.)',
+    },
+    {
+      name: 'className',
+      type: 'text',
+      helperText: 'Add custom Tailwind CSS classes',
+    },
+  ],
 });
 
-console.log('✅ Registered: Button Standard 1');
+console.log('✅ Registered: Eminent Badge');
+
+// --- Register Hero1 Component ---
+Builder.registerComponent(Hero1, {
+  name: 'Eminent Hero 1',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  inputs: [
+    {
+      name: 'badge',
+      type: 'string',
+      defaultValue: '✨ Your Website Builder',
+      helperText: 'Optional badge text shown above the heading',
+    },
+    {
+      name: 'heading',
+      type: 'string',
+      defaultValue: 'Blocks Built With Shadcn & Tailwind',
+      helperText: 'Main hero heading text',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      defaultValue: 'Finely crafted components built with React, Tailwind and Shadcn UI. Developers can copy and paste these blocks directly into their project.',
+      helperText: 'Hero description text',
+    },
+    {
+      name: 'buttons',
+      type: 'object',
+      defaultValue: {
+        primary: {
+          text: 'Discover all components',
+          url: 'https://www.shadcnblocks.com',
+        },
+        secondary: {
+          text: 'View on GitHub',
+          url: 'https://www.shadcnblocks.com',
+        },
+      },
+      subFields: [
+        {
+          name: 'primary',
+          type: 'object',
+          subFields: [
+            {
+              name: 'text',
+              type: 'string',
+              defaultValue: 'Discover all components',
+            },
+            {
+              name: 'url',
+              type: 'string',
+              defaultValue: 'https://www.shadcnblocks.com',
+            },
+          ],
+        },
+        {
+          name: 'secondary',
+          type: 'object',
+          subFields: [
+            {
+              name: 'text',
+              type: 'string',
+              defaultValue: 'View on GitHub',
+            },
+            {
+              name: 'url',
+              type: 'string',
+              defaultValue: 'https://www.shadcnblocks.com',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'image',
+      type: 'object',
+      defaultValue: {
+        src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg',
+        alt: 'Hero section demo image showing interface components',
+      },
+      subFields: [
+        {
+          name: 'src',
+          type: 'file',
+          allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg', 'webp'],
+          defaultValue: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-1.svg',
+          helperText: 'Hero image',
+        },
+        {
+          name: 'alt',
+          type: 'string',
+          defaultValue: 'Hero section demo image showing interface components',
+          helperText: 'Image alt text for accessibility',
+        },
+      ],
+    },
+  ],
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2F76e7f1e807554abe87f0d6731005ed79',
+});
+
+console.log('✅ Registered: Eminent Hero 1');
+
+// --- Register Custom Insert Menu Section ---
+Builder.register('insertMenu', {
+  name: 'Eminent Blocks',
+  items: [
+    { name: 'Eminent Hero 1', item: 'Eminent Hero 1' },
+  ],
+});
+
+Builder.register('insertMenu', {
+  name: 'Eminent Components',
+  items: [
+    { name: 'Eminent Button', item: 'Eminent Button' },
+    { name: 'Eminent Badge', item: 'Eminent Badge' },
+  ],
+});
+
+console.log('✅ Registered: Eminent Components section');
 console.log('✅ All custom components registered!');
