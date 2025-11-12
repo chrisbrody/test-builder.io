@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(mkdir:*)",
+      "WebFetch(domain:www.builder.io)",
+      "Bash(npm init builder.io@latest)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
