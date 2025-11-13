@@ -83,13 +83,20 @@ const filterCategories = [
 ];
 
 const Projects7 = ({ projects = Projects7Data }: Projects7Props) => {
+  console.log('🎨 Projects7 received projects:', projects);
+  console.log('🎨 Projects7 projects count:', projects.length);
+
   const [activeFilter, setActiveFilter] = useState("ALL");
   const [filteredItems, setFilteredItems] = useState(projects);
+
+  console.log('🎨 Current filtered items:', filteredItems);
+  console.log('🎨 Current active filter:', activeFilter);
 
   const handleFilterChange = (category: string) => {
     setActiveFilter(category);
 
     if (category === "ALL") {
+      console.log('🎨 Setting all projects:', projects);
       setFilteredItems(projects);
     } else {
       const filtered = projects.filter(
@@ -97,6 +104,7 @@ const Projects7 = ({ projects = Projects7Data }: Projects7Props) => {
           item.category === category ||
           item.tags.includes(category.toLowerCase().replace(" ", "-")),
       );
+      console.log(`🎨 Filtered for category "${category}":`, filtered);
       setFilteredItems(filtered);
     }
   };
