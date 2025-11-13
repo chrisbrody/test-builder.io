@@ -59,16 +59,32 @@ export default async function ProjectsListingPage() {
   // Transform Builder.io featured projects to match Projects7 component structure
   const transformedProjects: Project[] = featuredProjects.map((project: BuilderContent) => {
     const projectData = project.data as ProjectData;
+
+    // Handle tags - can be string, array, or undefined
+    let tags: string[] = [];
+    if (Array.isArray(projectData?.tags)) {
+      tags = projectData.tags;
+    } else if (typeof projectData?.tags === 'string') {
+      tags = [projectData.tags];
+    } else if (projectData?.keywords) {
+      tags = projectData.keywords.split(',').map(k => k.trim());
+    }
+
+    console.log('🔍 Final tags array:', tags);
+
     return {
       id: project.id || 'unknown',
       title: projectData?.title || 'Untitled Project',
       category: extractCategory(projectData?.keywords, projectData?.category),
       description: projectData?.description || 'No description available',
       image: projectData?.metaImage || 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg',
-      tags: projectData?.tags || (projectData?.keywords ? projectData.keywords.split(',').map(k => k.trim()) : []),
+      tags: tags,
       url: `/projects/${projectData?.slug || project.id}`,
     };
   });
+
+  console.log('🔍 Transformed projects:', transformedProjects.length);
+  console.log('🔍 Transformed projects data:', JSON.stringify(transformedProjects, null, 2));
 
   return (
     <>

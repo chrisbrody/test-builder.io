@@ -36,10 +36,10 @@ const Cta5 = ({
       <img
         src={image.src}
         alt={image.alt}
-        className={`w-full object-cover ${
+        className={`w-full h-auto ${
           isStacked
-            ? 'aspect-video rounded-t-md md:rounded-t-xl'
-            : 'aspect-3/2 rounded-t-md md:rounded-l-md md:rounded-t-none lg:rounded-none'
+            ? 'rounded-t-md md:rounded-t-xl'
+            : 'rounded-t-md md:rounded-l-md md:rounded-t-none lg:rounded-none'
         }`}
       />
       {image.caption && (
