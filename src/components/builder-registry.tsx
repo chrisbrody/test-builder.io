@@ -6,6 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { Hero1 } from '@/components/hero1';
 import { HeroHeading } from '@/components/hero-heading';
 import { Cta5 } from '@/components/cta5';
+import { Blog7 } from '@/components/blog7';
 
 // Register components immediately when this module loads
 console.log('🔧 Registering components with Builder.io...');
@@ -338,11 +339,111 @@ Builder.registerComponent(Cta5, {
 
 console.log('✅ Registered: Eminent Image w/Content');
 
+// --- Register Blog7 Component ---
+Builder.registerComponent(Blog7, {
+  name: 'Eminent Blog List',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  inputs: [
+    {
+      name: 'tagline',
+      type: 'string',
+      defaultValue: 'Latest Updates',
+      helperText: 'Badge text shown above the heading',
+    },
+    {
+      name: 'heading',
+      type: 'string',
+      defaultValue: 'Blog Posts',
+      helperText: 'Main heading text',
+    },
+    {
+      name: 'description',
+      type: 'string',
+      defaultValue: 'Discover the latest trends, tips, and best practices in modern web development.',
+      helperText: 'Description text below the heading',
+    },
+    {
+      name: 'buttonText',
+      type: 'string',
+      defaultValue: 'View all articles',
+      helperText: 'Text for the "view all" button',
+    },
+    {
+      name: 'buttonUrl',
+      type: 'string',
+      defaultValue: '/blog',
+      helperText: 'URL for the "view all" button',
+    },
+    {
+      name: 'posts',
+      type: 'list',
+      defaultValue: [],
+      helperText: 'List of blog posts to display',
+      subFields: [
+        {
+          name: 'id',
+          type: 'string',
+          required: true,
+        },
+        {
+          name: 'title',
+          type: 'string',
+          defaultValue: 'Blog Post Title',
+          helperText: 'The blog post title',
+        },
+        {
+          name: 'summary',
+          type: 'string',
+          defaultValue: 'Blog post summary goes here...',
+          helperText: 'Short summary of the blog post',
+        },
+        {
+          name: 'label',
+          type: 'string',
+          defaultValue: 'Article',
+          helperText: 'Category or label for the post',
+        },
+        {
+          name: 'author',
+          type: 'string',
+          defaultValue: 'Author Name',
+          helperText: 'Author of the blog post',
+        },
+        {
+          name: 'published',
+          type: 'string',
+          defaultValue: '01-01-2024',
+          helperText: 'Published date',
+        },
+        {
+          name: 'url',
+          type: 'string',
+          defaultValue: '/blog/post',
+          helperText: 'URL to the full blog post',
+        },
+        {
+          name: 'image',
+          type: 'file',
+          allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg', 'webp'],
+          defaultValue: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg',
+          helperText: 'Featured image for the blog post',
+        },
+      ],
+    },
+  ],
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2F75e1274b761a439580462d573f29c15d',
+});
+
+console.log('✅ Registered: Eminent Blog List');
+
 Builder.register('insertMenu', {
   name: 'Eminent Blocks',
   items: [
     { name: 'Eminent Hero 1', item: 'Eminent Hero 1' },
     { name: 'Eminent Image w/Content', item: 'Eminent Image w/Content' },
+    { name: 'Eminent Blog List', item: 'Eminent Blog List' },
   ],
 });
 
