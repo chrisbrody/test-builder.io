@@ -7,7 +7,8 @@
       "WebFetch(domain:www.builder.io)",
       "Bash(npm init builder.io@latest)",
       "Bash(npm install:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nAdd blog page with shadcn components and enhance Builder.io integration\n\n- Add new blog section with article layout and prose styling\n- Add Shadcn UI components: alert, avatar, breadcrumb, separator\n- Install @tailwindcss/typography plugin for rich text content\n- Add date-fns for date formatting\n- Install required Radix UI dependencies\n- Enhance Builder.io registry with organized insert menu sections\n- Add comprehensive prose CSS styles for article content\n- Update project documentation with commit guidelines\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
