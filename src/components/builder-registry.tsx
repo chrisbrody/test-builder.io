@@ -211,7 +211,6 @@ Builder.registerComponent(Hero1, {
 
 console.log('✅ Registered: Eminent Hero 1');
 
-// --- Register Custom Insert Menu Section ---
 Builder.register('insertMenu', {
   name: 'Eminent Blocks',
   items: [
@@ -227,5 +226,7 @@ Builder.register('insertMenu', {
   ],
 });
 
+console.log('✅ Registered: Eminent Pages section');
+console.log('✅ Registered: Eminent Blocks section');
 console.log('✅ Registered: Eminent Components section');
 console.log('✅ All custom components registered!');

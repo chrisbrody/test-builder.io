@@ -1,3 +1,5 @@
+DO NOT INCLUDE YOURESELF IN THE GIT COMMITS: ALWAYS LEAVE THIS OUT: 🤖 Generated with [Claude Code](https://claude.com/claude-code) Co-Authored-By: Claude <noreply@anthropic.com>
+
 Overall Strategy
 The core idea is to:
 Integrate Builder.io into your React/Next.js project.

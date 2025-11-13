@@ -5,7 +5,9 @@
       "Bash(npx create-next-app:*)",
       "Bash(mkdir:*)",
       "WebFetch(domain:www.builder.io)",
-      "Bash(npm init builder.io@latest)"
+      "Bash(npm init builder.io@latest)",
+      "Bash(npm install:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
