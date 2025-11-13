@@ -4,6 +4,7 @@ import { Builder } from '@builder.io/react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Hero1 } from '@/components/hero1';
+import { HeroHeading } from '@/components/hero-heading';
 
 // Register components immediately when this module loads
 console.log('🔧 Registering components with Builder.io...');
@@ -108,6 +109,36 @@ Builder.registerComponent(Badge, {
 });
 
 console.log('✅ Registered: Eminent Badge');
+
+// --- Register Heading Component (h1-h6) ---
+Builder.registerComponent(HeroHeading, {
+  name: 'Eminent Heading',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  inputs: [
+    {
+      name: 'children',
+      type: 'text',
+      defaultValue: 'Your Heading',
+      helperText: 'The heading text content',
+    },
+    {
+      name: 'level',
+      type: 'text',
+      enum: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      defaultValue: 'h1',
+      helperText: 'Heading level (h1-h6) - automatically styled with Shadcn UI styles',
+    },
+    {
+      name: 'className',
+      type: 'text',
+      helperText: 'Add custom Tailwind CSS classes to override or extend default styles',
+    },
+  ],
+});
+
+console.log('✅ Registered: Eminent Heading');
 
 // --- Register Hero1 Component ---
 Builder.registerComponent(Hero1, {
@@ -221,6 +252,7 @@ Builder.register('insertMenu', {
 Builder.register('insertMenu', {
   name: 'Eminent Components',
   items: [
+    { name: 'Eminent Heading', item: 'Eminent Heading' },
     { name: 'Eminent Button', item: 'Eminent Button' },
     { name: 'Eminent Badge', item: 'Eminent Badge' },
   ],

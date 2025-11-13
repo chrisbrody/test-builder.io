@@ -122,6 +122,103 @@
   }
 }
 
+/* Shadcn Typography Styles - High specificity to override Builder.io defaults */
+@layer components {
+  /* Target Builder.io content specifically */
+  .builder-blocks > h1 {
+    @apply !my-6 text-pretty text-4xl font-bold lg:text-6xl;
+  }
+
+  .builder-block > h2 {
+    @apply !scroll-m-20 !pb-2 !text-3xl !font-semibold !tracking-tight first:!mt-0;
+  }
+
+  .builder-block > h3 {
+    @apply !scroll-m-20 !text-2xl !font-semibold !tracking-tight;
+  }
+
+  .builder-block > h4 {
+    @apply !scroll-m-20 !text-xl !font-semibold !tracking-tight;
+  }
+
+  .builder-block > h5 {
+    @apply !scroll-m-20 !text-lg !font-semibold !tracking-tight;
+  }
+
+  .builder-block > h6 {
+    @apply !scroll-m-20 !text-base !font-semibold !tracking-tight;
+  }
+
+  .builder-block > p {
+    @apply !leading-7 [&:not(:first-child)]:!mt-6;
+  }
+
+  .builder-block > blockquote {
+    @apply !mt-6 !border-l-2 !pl-6 !italic;
+  }
+
+  .builder-block > ul {
+    @apply !my-6 !ml-6 !list-disc [&>li]:!mt-2;
+  }
+
+  .builder-block> ol {
+    @apply !my-6 !ml-6 !list-decimal [&>li]:!mt-2;
+  }
+
+  .builder-block> code {
+    @apply !relative !rounded !bg-muted !px-[0.3rem] !py-[0.2rem] !font-mono !text-sm !font-semibold;
+  }
+
+  .builder-block> pre {
+    @apply !mt-6 !mb-4 !overflow-x-auto !rounded-lg !border !bg-black !py-4;
+  }
+
+  .builder-block> pre code {
+    @apply !bg-transparent !p-0;
+  }
+
+  .builder-block> strong {
+    @apply !font-semibold;
+  }
+
+  .builder-block> em {
+    @apply !italic;
+  }
+
+  .builder-block> small {
+    @apply !text-sm !font-medium !leading-none;
+  }
+
+
+  .builder-block> hr {
+    @apply !my-8 !border-border;
+  }
+
+  .builder-block> table {
+    @apply !w-full !my-6;
+  }
+
+  .builder-block> thead {
+    @apply !border-b;
+  }
+
+  .builder-block> th {
+    @apply !h-12 !px-4 !text-left !align-middle !font-medium;
+  }
+
+  .builder-block> tr {
+    @apply !border-b;
+  }
+
+  .builder-block> tbody tr:nth-child(even) {
+    @apply !bg-muted;
+  }
+
+  .builder-block> td {
+    @apply !p-4 !align-middle;
+  }
+}
+
 /* Custom prose styles to match shadcnblocks blogpost1 exactly */
 @layer components {
   /* First h2 - acts as the main article title */
