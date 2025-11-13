@@ -1,5 +1,6 @@
 import { builder, BuilderContent } from '@builder.io/sdk';
 import { BlogListingClient } from '@/components/blog-listing-client';
+import { BackLink } from '@/components/back-link';
 
 // Initialize Builder
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
@@ -68,5 +69,10 @@ export default async function BlogListingPage() {
     };
   });
 
-  return <BlogListingClient posts={transformedPosts} />;
+  return (
+    <>
+      <BackLink href="/" label="Back to Home" />
+      <BlogListingClient posts={transformedPosts} />
+    </>
+  );
 }

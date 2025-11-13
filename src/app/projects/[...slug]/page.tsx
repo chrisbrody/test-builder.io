@@ -12,20 +12,20 @@ import '@/components/builder-registry';
 // Initialize Builder with your API key
 builder.init(process.env.NEXT_PUBLIC_BUILDER_API_KEY!);
 
-export default function BlogPost() {
+export default function ProjectPage() {
   const pathname = usePathname();
   const isPreviewingInBuilder = useIsPreviewing();
   const [content, setContent] = useState<any>(null);
   const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [blogDate, setBlogDate] = useState<string>('');
+  const [projectDate, setProjectDate] = useState<string>('');
 
   // Get the page content from Builder
   useEffect(() => {
     async function fetchContent() {
       try {
         const fetchedContent = await builder
-          .get('blog-post', {
+          .get('featured-project', {
             userAttributes: {
               urlPath: pathname || '/',
             },
@@ -35,7 +35,7 @@ export default function BlogPost() {
         setContent(fetchedContent);
         setNotFound(!fetchedContent);
 
-        console.log('Blog post data:', fetchedContent);
+        console.log('Featured project data:', fetchedContent);
 
         // If the page title is found, set the document title
         if (fetchedContent?.data?.title) {
@@ -107,17 +107,17 @@ export default function BlogPost() {
         }
 
         if (fetchedContent?.data?.date) {
-          console.log('Blog date:', fetchedContent?.data?.date);
+          console.log('Project date:', fetchedContent?.data?.date);
           // Format date to MM-DD-YYYY
           const date = new Date(fetchedContent.data.date);
           const month = String(date.getMonth() + 1).padStart(2, '0');
           const day = String(date.getDate()).padStart(2, '0');
           const year = date.getFullYear();
           const formattedDate = `${month}-${day}-${year}`;
-          setBlogDate(formattedDate);
+          setProjectDate(formattedDate);
         }
       } catch (error) {
-        console.error('Error fetching Builder.io blog post:', error);
+        console.error('Error fetching Builder.io featured project:', error);
         setNotFound(true);
       } finally {
         setLoading(false);
@@ -131,7 +131,7 @@ export default function BlogPost() {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <p>Loading blog post...</p>
+        <p>Loading project...</p>
       </div>
     );
   }
@@ -141,12 +141,12 @@ export default function BlogPost() {
   if (notFound && !isPreviewingInBuilder) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen p-8">
-        <h1 className="text-2xl font-bold mb-4">404 - Blog Post Not Found</h1>
+        <h1 className="text-2xl font-bold mb-4">404 - Project Not Found</h1>
         <p className="text-muted-foreground">
-          No blog post found at this URL.
+          No project found at this URL.
         </p>
         <p className="text-sm text-muted-foreground mt-2">
-          Create a new blog post in your Builder.io space with the URL path: {pathname}
+          Create a new featured project in your Builder.io space with the URL path: {pathname}
         </p>
       </div>
     );
@@ -155,13 +155,13 @@ export default function BlogPost() {
   // Return the page when found
   return (
     <>
-      <BackLink href="/blog" label="Back to Blog" />
+      <BackLink href="/projects" label="Back to Projects" />
       <h1 className='text-center my-6 text-pretty text-4xl font-bold lg:text-6xl'>{content?.data?.title}</h1>
-      {blogDate && (
-        <p className='text-muted-foreground mb-8 text-center lg:text-xl'>{blogDate}</p>
+      {projectDate && (
+        <p className='text-muted-foreground mb-8 text-center lg:text-xl'>{projectDate}</p>
       )}
-      {/* Render the Builder blog post */}
-      <BuilderComponent model="blog-post" content={content} />
+      {/* Render the Builder featured project */}
+      <BuilderComponent model="featured-project" content={content} />
     </>
   );
 }

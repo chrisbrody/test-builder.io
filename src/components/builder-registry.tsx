@@ -7,6 +7,7 @@ import { Hero1 } from '@/components/hero1';
 import { HeroHeading } from '@/components/hero-heading';
 import { Cta5 } from '@/components/cta5';
 import { Blog7 } from '@/components/blog7';
+import { Projects7 } from '@/components/projects7';
 
 // Register components immediately when this module loads
 console.log('🔧 Registering components with Builder.io...');
@@ -438,12 +439,80 @@ Builder.registerComponent(Blog7, {
 
 console.log('✅ Registered: Eminent Blog List');
 
+// --- Register Projects7 Component ---
+Builder.registerComponent(Projects7, {
+  name: 'Eminent Projects List',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  inputs: [
+    {
+      name: 'projects',
+      type: 'list',
+      defaultValue: [],
+      helperText: 'List of projects to display',
+      subFields: [
+        {
+          name: 'id',
+          type: 'string',
+          required: true,
+        },
+        {
+          name: 'title',
+          type: 'string',
+          defaultValue: 'Project Title',
+          helperText: 'The project title',
+        },
+        {
+          name: 'category',
+          type: 'string',
+          defaultValue: 'MINIMAL',
+          helperText: 'Project category',
+        },
+        {
+          name: 'description',
+          type: 'string',
+          defaultValue: 'Project description goes here...',
+          helperText: 'Short description of the project',
+        },
+        {
+          name: 'image',
+          type: 'file',
+          allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg', 'webp'],
+          defaultValue: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg',
+          helperText: 'Featured image for the project',
+        },
+        {
+          name: 'tags',
+          type: 'list',
+          defaultValue: [],
+          helperText: 'Tags for the project',
+          subFields: [
+            {
+              name: 'tag',
+              type: 'string',
+            },
+          ],
+        },
+        {
+          name: 'url',
+          type: 'string',
+          defaultValue: '/projects/project',
+          helperText: 'URL to the full project page',
+        },
+      ],
+    },
+  ],
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2F75e1274b761a439580462d573f29c15d',
+});
+
+console.log('✅ Registered: Eminent Projects List');
+
 Builder.register('insertMenu', {
   name: 'Eminent Blocks',
   items: [
     { name: 'Eminent Hero 1', item: 'Eminent Hero 1' },
     { name: 'Eminent Image w/Content', item: 'Eminent Image w/Content' },
-    { name: 'Eminent Blog List', item: 'Eminent Blog List' },
   ],
 });
 
