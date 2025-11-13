@@ -85,7 +85,7 @@ const Blog7 = ({
             {description}
           </p>
           <Button variant="link" className="w-full sm:w-auto" asChild>
-            <a href={buttonUrl} target="_blank">
+            <a href={buttonUrl}>
               {buttonText}
               <ArrowRight className="ml-2 size-4" />
             </a>
@@ -100,7 +100,6 @@ const Blog7 = ({
               <div className="aspect-16/9 w-full">
                 <a
                   href={post.url}
-                  target="_blank"
                   className="fade-in transition-opacity duration-200 hover:opacity-70"
                 >
                   <img
