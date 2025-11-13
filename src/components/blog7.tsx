@@ -111,7 +111,7 @@ const Blog7 = ({
               </div>
               <CardHeader>
                 <h3 className="text-lg font-semibold hover:underline md:text-xl">
-                  <a href={post.url} target="_blank">
+                  <a href={post.url}>
                     {post.title}
                   </a>
                 </h3>
@@ -122,7 +122,6 @@ const Blog7 = ({
               <CardFooter>
                 <a
                   href={post.url}
-                  target="_blank"
                   className="text-foreground flex items-center hover:underline"
                 >
                   Read more
