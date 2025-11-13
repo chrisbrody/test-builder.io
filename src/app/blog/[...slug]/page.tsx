@@ -17,6 +17,7 @@ export default function BlogPost() {
   const [content, setContent] = useState<any>(null);
   const [notFound, setNotFound] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [blogDate, setBlogDate] = useState<string>('');
 
   // Get the page content from Builder
   useEffect(() => {
@@ -38,6 +39,81 @@ export default function BlogPost() {
         // If the page title is found, set the document title
         if (fetchedContent?.data?.title) {
           document.title = fetchedContent.data.title;
+        }
+
+        // Set meta description
+        if (fetchedContent?.data?.description) {
+          let metaDescription = document.querySelector('meta[name="description"]');
+          if (!metaDescription) {
+            metaDescription = document.createElement('meta');
+            metaDescription.setAttribute('name', 'description');
+            document.head.appendChild(metaDescription);
+          }
+          metaDescription.setAttribute('content', fetchedContent.data.description);
+        }
+
+        // Set meta keywords
+        if (fetchedContent?.data?.keywords) {
+          let metaKeywords = document.querySelector('meta[name="keywords"]');
+          if (!metaKeywords) {
+            metaKeywords = document.createElement('meta');
+            metaKeywords.setAttribute('name', 'keywords');
+            document.head.appendChild(metaKeywords);
+          }
+          metaKeywords.setAttribute('content', fetchedContent.data.keywords);
+        }
+
+        // Set Open Graph image
+        if (fetchedContent?.data?.metaImage) {
+          let ogImage = document.querySelector('meta[property="og:image"]');
+          if (!ogImage) {
+            ogImage = document.createElement('meta');
+            ogImage.setAttribute('property', 'og:image');
+            document.head.appendChild(ogImage);
+          }
+          ogImage.setAttribute('content', fetchedContent.data.metaImage);
+
+          // Also set Twitter card image
+          let twitterImage = document.querySelector('meta[name="twitter:image"]');
+          if (!twitterImage) {
+            twitterImage = document.createElement('meta');
+            twitterImage.setAttribute('name', 'twitter:image');
+            document.head.appendChild(twitterImage);
+          }
+          twitterImage.setAttribute('content', fetchedContent.data.metaImage);
+        }
+
+        // Set Open Graph title
+        if (fetchedContent?.data?.title) {
+          let ogTitle = document.querySelector('meta[property="og:title"]');
+          if (!ogTitle) {
+            ogTitle = document.createElement('meta');
+            ogTitle.setAttribute('property', 'og:title');
+            document.head.appendChild(ogTitle);
+          }
+          ogTitle.setAttribute('content', fetchedContent.data.title);
+        }
+
+        // Set Open Graph description
+        if (fetchedContent?.data?.description) {
+          let ogDescription = document.querySelector('meta[property="og:description"]');
+          if (!ogDescription) {
+            ogDescription = document.createElement('meta');
+            ogDescription.setAttribute('property', 'og:description');
+            document.head.appendChild(ogDescription);
+          }
+          ogDescription.setAttribute('content', fetchedContent.data.description);
+        }
+
+        if (fetchedContent?.data?.date) {
+          console.log('Blog date:', fetchedContent?.data?.date);
+          // Format date to MM-DD-YYYY
+          const date = new Date(fetchedContent.data.date);
+          const month = String(date.getMonth() + 1).padStart(2, '0');
+          const day = String(date.getDate()).padStart(2, '0');
+          const year = date.getFullYear();
+          const formattedDate = `${month}-${day}-${year}`;
+          setBlogDate(formattedDate);
         }
       } catch (error) {
         console.error('Error fetching Builder.io blog post:', error);
@@ -78,6 +154,10 @@ export default function BlogPost() {
   // Return the page when found
   return (
     <>
+      <h1 className='text-center my-6 text-pretty text-4xl font-bold lg:text-6xl'>{content?.data?.title}</h1>
+      {blogDate && (
+        <p className='text-muted-foreground mb-8 text-center lg:text-xl'>{blogDate}</p>
+      )}
       {/* Render the Builder blog post */}
       <BuilderComponent model="blog-post" content={content} />
     </>

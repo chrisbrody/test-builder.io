@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Hero1 } from '@/components/hero1';
 import { HeroHeading } from '@/components/hero-heading';
+import { Cta5 } from '@/components/cta5';
 
 // Register components immediately when this module loads
 console.log('🔧 Registering components with Builder.io...');
@@ -242,10 +243,106 @@ Builder.registerComponent(Hero1, {
 
 console.log('✅ Registered: Eminent Hero 1');
 
+// --- Register CTA5 Component ---
+Builder.registerComponent(Cta5, {
+  name: 'Eminent Image w/Content',
+  defaultStyles: {
+    marginTop: '0px',
+  },
+  inputs: [
+    {
+      name: 'variant',
+      type: 'text',
+      enum: [
+        { label: 'Image Left', value: 'image-left' },
+        { label: 'Image Right', value: 'image-right' },
+        { label: 'Image Top', value: 'image-top' },
+      ],
+      defaultValue: 'image-left',
+      helperText: 'Choose the layout: image on left, right, or top',
+    },
+    {
+      name: 'heading',
+      type: 'string',
+      defaultValue: 'Call to Action',
+      helperText: 'Main CTA heading text',
+    },
+    {
+      name: 'description',
+      type: 'html',
+      defaultValue: '<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Elig doloremque mollitia fugiat omnis! Porro facilis quo animi consequatur. Explicabo.</p>',
+      helperText: 'CTA description text (supports rich text formatting like bold, italic, etc.)',
+    },
+    {
+      name: 'showButton',
+      type: 'boolean',
+      defaultValue: true,
+      helperText: 'Toggle to show or hide the button',
+    },
+    {
+      name: 'button',
+      type: 'object',
+      defaultValue: {
+        text: 'Get Started',
+        url: '#',
+      },
+      showIf: 'options.get("showButton") === true',
+      subFields: [
+        {
+          name: 'text',
+          type: 'string',
+          defaultValue: 'Get Started',
+          helperText: 'Button text (leave empty to hide button)',
+        },
+        {
+          name: 'url',
+          type: 'string',
+          defaultValue: '#',
+          helperText: 'Button link URL',
+        },
+      ],
+    },
+    {
+      name: 'image',
+      type: 'object',
+      defaultValue: {
+        src: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg',
+        alt: 'placeholder hero',
+        caption: '',
+      },
+      subFields: [
+        {
+          name: 'src',
+          type: 'file',
+          allowedFileTypes: ['jpeg', 'jpg', 'png', 'svg', 'webp'],
+          defaultValue: 'https://deifkwefumgah.cloudfront.net/shadcnblocks/block/placeholder-dark-1.svg',
+          helperText: 'CTA image',
+        },
+        {
+          name: 'alt',
+          type: 'string',
+          defaultValue: 'placeholder hero',
+          helperText: 'Image alt text for accessibility',
+        },
+        {
+          name: 'caption',
+          type: 'string',
+          defaultValue: '',
+          helperText: 'Optional caption to display under the image (leave blank to hide)',
+        },
+      ],
+    },
+  ],
+  image: 'https://cdn.builder.io/api/v1/image/assets%2F44da67156a76411da3de2c85cd07271a%2F75e1274b761a439580462d573f29c15d',
+});
+
+console.log('✅ Registered: Eminent Image w/Content');
+
 Builder.register('insertMenu', {
   name: 'Eminent Blocks',
   items: [
     { name: 'Eminent Hero 1', item: 'Eminent Hero 1' },
+    { name: 'Eminent Image w/Content', item: 'Eminent Image w/Content' },
   ],
 });
 
